@@ -1,12 +1,19 @@
 <template>
     <div class="weather-info">
-        <img :src="`https://openweathermap.org/img/wn/${$store.state.weatherData.icon}@2x.png`" :alt="$store.state.weatherData.icon" />
-        <div class="temp">{{ ($store.state.weatherData.temp - 273.15).toFixed(1)}}&deg;</div>
-        <div class="text">{{ $store.state.weatherData.text }}</div>
-        <div class="location">{{ $store.state.weatherData.city }}</div>
+        <img :src="`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`" :alt="weatherData.icon" />
+        <div class="temp">{{ (weatherData.temp - 273.15).toFixed(1)}}&deg;</div>
+        <div class="text">{{ weatherData.text }}</div>
+        <div class="location">{{ weatherData.city }}</div>
     </div>
 </template>
 <script setup>
+import { useStore } from '../store/store';
+import { storeToRefs } from 'pinia';
+
+// store 가져오기
+const store = useStore();
+// store 데이터 가져오기
+const { weatherData } = storeToRefs(store);
 
 </script>
 <style lang="scss" scoped>
